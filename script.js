@@ -31,7 +31,7 @@ let computerScore = 0;
 let winningScore = 5;
 
 function setWinningScore(clickedElement) {
-  const elements = [three, five, ten, reset];
+  const elements = [three, five, ten];
 
   for (const element of elements) {
     element.style.backgroundColor = "";
@@ -46,20 +46,22 @@ function setWinningScore(clickedElement) {
 
 three.addEventListener("click", () => {
   setWinningScore(three);
+  winningSore = 3;
 });
 
 five.addEventListener("click", () => {
   setWinningScore(five);
+  winningSore = 5;
 });
 
 ten.addEventListener("click", () => {
   setWinningScore(ten);
+  winningSore = 10;
 });
 
 reset.addEventListener("click", () => {
   playerScore = 0;
   computerScore = 0;
-  winningScore = 5;
 
   rock.disabled = false;
   paper.disabled = false;
