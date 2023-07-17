@@ -30,7 +30,7 @@ let playerScore = 0;
 let computerScore = 0;
 let winningScore = 5;
 
-function setWinningScore(clickedElement) {
+function setWinningScore(clickedElement, score) {
   const elements = [three, five, ten];
 
   for (const element of elements) {
@@ -45,18 +45,15 @@ function setWinningScore(clickedElement) {
 }
 
 three.addEventListener("click", () => {
-  setWinningScore(three);
-  winningScore = 3;
+  setWinningScore(three, 3);
 });
 
 five.addEventListener("click", () => {
-  setWinningScore(five);
-  winningScore = 5;
+  setWinningScore(five, 5);
 });
 
 ten.addEventListener("click", () => {
-  setWinningScore(ten);
-  winningScore = 10;
+  setWinningScore(ten, 10);
 });
 
 reset.addEventListener("click", () => {
