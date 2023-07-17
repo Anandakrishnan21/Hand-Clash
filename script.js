@@ -46,17 +46,17 @@ function setWinningScore(clickedElement) {
 
 three.addEventListener("click", () => {
   setWinningScore(three);
-  winningSore = 3;
+  winningScore = 3;
 });
 
 five.addEventListener("click", () => {
   setWinningScore(five);
-  winningSore = 5;
+  winningScore = 5;
 });
 
 ten.addEventListener("click", () => {
   setWinningScore(ten);
-  winningSore = 10;
+  winningScore = 10;
 });
 
 reset.addEventListener("click", () => {
