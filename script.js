@@ -9,15 +9,15 @@ const winner = document.querySelector(".winner");
 const compArray = [
   {
     name: "stone",
-    src: "/images/2.png",
+    src: "./images/2.png",
   },
   {
     name: "paper",
-    src: "/images/3.png",
+    src: "./images/3.png",
   },
   {
     name: "scissors",
-    src: "/images/1.png",
+    src: "./images/1.png",
   },
 ];
 
@@ -40,8 +40,8 @@ const handleOptionClick = (e) => {
     scoreCounter(clickedIndex, compRandom, computerChoice);
   }, 2000);
 
-  userImg.src = "/images/4.png";
-  compImg.src = "/images/2.png";
+  userImg.src = "./images/4.png";
+  compImg.src = "./images/2.png";
 };
 
 clickedOptions.forEach((option) => {
