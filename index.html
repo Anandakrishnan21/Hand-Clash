@@ -7,44 +7,47 @@
     <title>Rock Paper Scissor</title>
   </head>
   <body>
-    <div class="game-container">
-      <div class="image">
-        <img src="./images/img1.jpg" alt="" />
+    <div class="wrapper">
+      <div class="header">
+        <p class="titleStart">1VSBOT</p>
+        <span class="titleEnd">GAMES</span>
       </div>
-      <div class="selections">
-        <button class="btn" id="rock">
-          <img src="./images/rock.png" alt="" />
-        </button>
-        <button class="btn" id="paper">
-          <img src="./images/paper.png" alt="" />
-        </button>
-        <button class="btn" id="scissors">
-          <img src="./images/scissors.png" alt="" />
-        </button>
-      </div>
-      <div class="score">
-        <button id="three" class="btn1">3</button>
-        <button id="five" class="btn1">5</button>
-        <button id="ten" class="btn1">10</button>
-        <button class="reset" id="reset">Reset</button>
-      </div>
-      <div class="container">
-        <div class="display-div">
-          <div class="score-display">
-            <p>Computer</p>
-            <span id="computer-score">0</span>
+      <div class="wrapper1">
+          <div class="points">
+            <div class="players">
+              <p>USER</p>
+              <span class="userScore">0</span>
+            </div>
+            <div class="players">
+              <p>COMPUTER</p>
+              <span class="computerScore">0</span>
+            </div>
           </div>
-          <div id="computer"></div>
-        </div>
-        <div class="display-div">
-          <div class="score-display">
-            <p>You</p>
-            <span id="player-score">0</span>
+          <div class="playingHands">
+            <span class="userChoice">
+              <img src="./images/4.png" alt="user choice" />
+            </span>
+            <span class="computerChoice">
+              <img src="./images/2.png" alt="computer choice" />
+            </span>
           </div>
-          <div id="you"></div>
-        </div>
+          <div>
+            <div>
+              <p class="winner"></p>
+            </div>
+            <div class="options">
+              <span class="option" id="rock">
+                <img src="./images/4.png" alt="rock" />
+              </span>
+              <span class="option" id="paper">
+                <img src="./images/5.png" alt="paper" />
+              </span>
+              <span class="option" id="scissors">
+                <img src="./images/6.png" alt="scissors" />
+              </span>
+            </div>
+          </div>
       </div>
-      <p id="who" class="who"></p>
     </div>
     <script src="./script.js"></script>
   </body>

@@ -1,143 +1,120 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,400&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", serif;
 }
 
-:root {
-    color-white: var(--#fff);
+img {
+    width: 150px;
+    height: 150px;
 }
 
-.game-container,
-.display-div{
-    width: 100%;
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #9a8c98;
+}
+
+.header {
+    width: 80px;
+    height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-}
-
-.game-container .image {
-    width: 100%;
-    height: 250px;
-}
-
-.game-container .image img {
-    width: 100%;
-    height: 100%;
-}
-
-.selections,
-.container,
-.score,
-.score-display {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-.selections {
-    padding: 0 1rem 0 1rem;
-}
-
-.btn,
-.btn1,
-.reset {
-    border: none;
-    outline: none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    font-weight: 700;
+    margin-bottom: 8px;
     border-radius: 0.5rem;
-    background-color: var(--color-white);
+    color: #22223b;
+    background-color: #c9ada7;
+}
+
+.wrapper1 {
+    display: flex;
+    flex-direction: column;
+    background-color: #22223b;
+    color: #f2e9e4;
+    border-radius: 0.5rem;
+    padding: 12px 0 12px 0;
+}
+
+.points {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.playingHands {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.playingHands img {
+    width: 100%;
+}
+
+.playingHands.start .userChoice {
+    transform-origin: left;
+    animation: userShake 0.7s ease infinite;
+}
+
+@keyframes userShake {
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+.playingHands.start .computerChoice {
+    transform-origin: right;
+    animation: compShake 0.7s ease infinite;
+}
+
+@keyframes compShake {
+    50% {
+        transform: rotate(-10deg);
+    }
+}
+
+.options{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 1rem;
+    padding: 8px;
+    gap: 8px;
 }
 
-.btn1 {
-    width: 80px;
-    height: 80px;
+.option {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #E74C3C;
+    border-radius: 100%;
+    background-color: #F0F0F0;
+    cursor: pointer;
 }
 
-.reset {
-    width: 130px;
-    height: 80px;
+.option img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
 }
 
-.btn:hover,
-.btn1:hover,
-.reset:hover {
-    box-shadow: rgba(0, 0, 0, 0.16) 3px 6px 9px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
-
-.btn img,
-#computer img,
-#you img {
-    width: 100px;
-    height: 100px;
-}
-
-p,
-span {
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-}
-
-.who {
-    padding: 0.5rem;
-}
-
-
-/* Responsive Code */
-
-/* Medium */
-@media (width<992px) {}
-
-/* Small */
-@media (width<768px) {}
-
-/* Extra small */
-@media (width<576px) {
-    .game-container .image {
-        height: 200px;
-    }
-
-    .game-container .image img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .btn img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .btn1,
-    .reset {
-        width: 100px;
-        height: 100%;
-        padding: 1rem;
-    }
-
-    p {
-        text-align: center;
-    }
-}
-
-/* Highly Extra small */
-@media (width<480px) {
-    .btn1,
-    .reset{
-        width: 100%;
-    }
+.winner{
+    text-align: center;
+    margin-bottom: 4px;
 }

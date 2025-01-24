@@ -1,148 +1,81 @@
-const rock = document.getElementById("rock");
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
-const who = document.getElementById("who");
-const computerScoreDisplay = document.getElementById("computer-score");
-const playerScoreDisplay = document.getElementById("player-score");
-const computer = document.getElementById("computer");
-const you = document.getElementById("you");
-const three = document.getElementById("three");
-const five = document.getElementById("five");
-const ten = document.getElementById("ten");
-const reset = document.getElementById("reset");
+const playingHands = document.querySelector(".playingHands");
+const userImg = document.querySelector(".userChoice img");
+const compImg = document.querySelector(".computerChoice img");
+const userPoints = document.querySelector(".userScore");
+const computerPoints = document.querySelector(".computerScore");
+const clickedOptions = document.querySelectorAll(".option");
+const winner = document.querySelector(".winner");
 
-const choices = [
+const compArray = [
   {
-    name: "rock",
-    image: "./images/rock.png",
+    name: "stone",
+    src: "/images/2.png",
   },
   {
     name: "paper",
-    image: "./images/paper.png",
+    src: "/images/3.png",
   },
   {
     name: "scissors",
-    image: "./images/scissors.png",
+    src: "/images/1.png",
   },
 ];
 
-let playerScore = 0;
-let computerScore = 0;
 let winningScore = 5;
+let userScore = 0;
+let computerScore = 0;
+const handleOptionClick = (e) => {
+  const clickedOption = e.currentTarget;
+  const clickedIndex = Array.from(clickedOptions).indexOf(clickedOption);
+  playingHands.classList.add("start");
 
-function setWinningScore(clickedElement, score) {
-  const elements = [three, five, ten];
+  setTimeout(() => {
+    playingHands.classList.remove("start");
+    const userSrc = clickedOption.querySelector("img").src;
+    const compRandom = Math.floor(Math.random() * compArray.length);
+    const computerChoice = compArray[compRandom];
+    userImg.src = userSrc;
+    compImg.src = computerChoice.src;
 
-  for (const element of elements) {
-    element.style.backgroundColor = "";
-    element.style.color = "";
-  }
+    scoreCounter(clickedIndex, compRandom, computerChoice);
+  }, 2000);
 
-  clickedElement.style.backgroundColor = "black";
-  clickedElement.style.color = "#fff";
+  userImg.src = "/images/4.png";
+  compImg.src = "/images/2.png";
+};
 
-  winningScore = score;
-}
-
-three.addEventListener("click", () => {
-  setWinningScore(three, 3);
+clickedOptions.forEach((option) => {
+  option.addEventListener("click", handleOptionClick);
 });
 
-five.addEventListener("click", () => {
-  setWinningScore(five, 5);
-});
-
-ten.addEventListener("click", () => {
-  setWinningScore(ten, 10);
-});
-
-reset.addEventListener("click", () => {
-  playerScore = 0;
-  computerScore = 0;
-
-  rock.disabled = false;
-  paper.disabled = false;
-  scissors.disabled = false;
-
-  computer.innerHTML = "";
-  you.innerHTML = "";
-
-  computerScoreDisplay.textContent = 0;
-  playerScoreDisplay.textContent = 0;
-  who.textContent = "";
-});
-
-function updateScores() {
-  computerScoreDisplay.textContent = computerScore;
-  playerScoreDisplay.textContent = playerScore;
-}
-
-function checkWinner() {
-  if (playerScore === winningScore) {
-    who.textContent = "You win the match 🧚🏼‍♂️🎉 🎉";
-    who.style.color = "green";
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
-  } else if (computerScore === winningScore) {
-    who.textContent = "Computer wins the match 😫😩";
-    who.style.color = "green";
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
-  }
-}
-
-function computerChoose() {
-  return choices[Math.floor(Math.random() * choices.length)];
-}
-
-function displayChoices(computerChoice, playerChoice) {
-  const computerImg = document.createElement("img");
-  computerImg.src = computerChoice.image;
-  computer.innerHTML = "";
-  computer.appendChild(computerImg);
-
-  const yourImage = you.querySelector("img");
-  if (yourImage) {
-    yourImage.src = playerChoice.image;
-  } else {
-    const yourImage = document.createElement("img");
-    yourImage.src = playerChoice.image;
-    you.appendChild(yourImage);
-  }
-}
-
-function playRound(playerChoice) {
-  const computerSelection = computerChoose();
-  displayChoices(computerSelection, playerChoice);
-
-  if (computerSelection.name === playerChoice.name) {
-    who.textContent = "Match Tie";
+const scoreCounter = (clickedIndex, compRandom, computerChoice) => {
+  if (clickedIndex === compRandom) {
+    console.log("Match tie");
   } else if (
-    (computerSelection.name === "rock" && playerChoice.name === "scissors") ||
-    (computerSelection.name === "paper" && playerChoice.name === "rock") ||
-    (computerSelection.name === "scissors" && playerChoice.name === "paper")
+    (clickedIndex === 0 && computerChoice.name === "scissors") ||
+    (clickedIndex === 1 && computerChoice.name === "stone") ||
+    (clickedIndex === 2 && computerChoice.name === "paper")
   ) {
-    who.textContent = `Computer Choose ${computerSelection.name} and You choose ${playerChoice.name}`;
-    computerScore += 1;
+    userScore++;
+    userPoints.textContent = userScore;
   } else {
-    who.textContent = `Computer Choose ${computerSelection.name} and You choose ${playerChoice.name}`;
-    playerScore += 1;
+    computerScore++;
+    computerPoints.textContent = computerScore;
   }
 
-  updateScores();
-  checkWinner();
-}
+  MatchFixing();
+};
 
-rock.addEventListener("click", () => {
-  playRound(choices[0]);
-});
-
-paper.addEventListener("click", () => {
-  playRound(choices[1]);
-});
-
-scissors.addEventListener("click", () => {
-  playRound(choices[2]);
-});
+const MatchFixing = () => {
+  if (userScore === winningScore) {
+    clickedOptions.forEach((option) => {
+      option.removeEventListener("click", handleOptionClick);
+    });
+    winner.textContent = "You won the match!!";
+  } else if (computerScore === winningScore) {
+    clickedOptions.forEach((option) => {
+      option.removeEventListener("click", handleOptionClick);
+    });
+    winner.textContent = "Computer won the match!!";
+  }
+};
